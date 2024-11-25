@@ -15,6 +15,11 @@ class Game {
         void Draw();
         void Update();
         void HandleInput();
+        void GameOver();
+        
+
+        int lives;
+        bool running;
 
     private:
         void CheckForCollisions();
@@ -39,6 +44,9 @@ class Game {
          MysteryShip mship;
          float mysteryShipSpwanInterval;
          float timeLastSpawn;
+
+         void Reset();
+         void InitGame();
 };
 
 
