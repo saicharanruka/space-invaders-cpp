@@ -1,1 +1,1 @@
-g++ main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 && ./a.out
+g++ src/* -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -o a.out && ./a.out
