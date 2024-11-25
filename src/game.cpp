@@ -3,12 +3,18 @@
 
 Game::Game()
 {
+    music = LoadMusicStream("sounds/music.ogg");
+    explosionSound = LoadSound("sounds/explosion.ogg");
+    PlayMusicStream(music);
     InitGame();
+    
 }
 
 Game::~Game()
 {
     Alien::UnloadImages();
+    UnloadMusicStream(music);
+    UnloadSound(explosionSound);
 }
 
 void Game::InitGame()
@@ -23,7 +29,16 @@ void Game::InitGame()
     mysteryShipSpwanInterval = GetRandomValue(10,20);
     lives = 3;
     running = true;
+    score = 0;
+    
+    
+    // highscore = 0;
 
+}
+
+void Game::checkForHighscore() {
+    if (score > highscore)
+        highscore = score;
 }
 
 void Game::Reset() {
@@ -124,6 +139,18 @@ void Game::CheckForCollisions()
         while (it != aliens.end()) {
             if (CheckCollisionRecs(it -> getRect(), laser.getRect())) 
             {
+                PlaySound(explosionSound);
+                // scoring
+                if (it -> type == 1) {
+                    score += 100;
+                }else if (it -> type == 2) {
+                    score += 200;
+                }else if (it -> type == 3) {
+                    score += 300;
+                }
+
+                checkForHighscore();
+
                 it = aliens.erase(it);
                 laser.active = false;
             }
@@ -148,6 +175,10 @@ void Game::CheckForCollisions()
         if (CheckCollisionRecs(mship.getRect(), laser.getRect())) {
             mship.alive = false;
             laser.active = false;
+            score += 500;
+            PlaySound(explosionSound);
+            checkForHighscore();
+
         }
     }
 

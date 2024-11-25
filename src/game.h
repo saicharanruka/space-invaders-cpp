@@ -21,6 +21,12 @@ class Game {
         int lives;
         bool running;
 
+        int score;
+        int highscore = 0;
+
+        Music music;
+
+
     private:
         void CheckForCollisions();
         void DeleteInactiveLasers();
@@ -47,6 +53,9 @@ class Game {
 
          void Reset();
          void InitGame();
+         void checkForHighscore();
+
+         Sound explosionSound;
 };
 
 
