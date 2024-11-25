@@ -7,10 +7,11 @@ class Laser
 {
 public:
     Laser(Vector2 position, int speed, Color color);
-    // ~Laser();
 
     void Draw();
     void Update();
+    Rectangle getRect();
+
     bool active;
     Color color;
 

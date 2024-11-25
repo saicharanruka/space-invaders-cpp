@@ -17,6 +17,7 @@ class Game {
         void HandleInput();
 
     private:
+        void CheckForCollisions();
         void DeleteInactiveLasers();
 
         std::vector<Obstacle> CreateObstacles();

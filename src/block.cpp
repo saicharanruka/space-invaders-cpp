@@ -8,3 +8,8 @@ Block::Block(Vector2 position)
 void Block::Draw() {
     DrawRectangle(position.x, position.y, 3, 3, YELLOW);
 }
+
+Rectangle Block::getRect()
+{
+    return {position.x, position.y, 3, 3};
+}
