@@ -1,4 +1,4 @@
-#include "raylib.h"
+#include <raylib.h>
 #include "game.h"
 
 constexpr int g_windowWidth = 750;
@@ -15,11 +15,14 @@ int main(void)
     while (!WindowShouldClose())
     {
         game.HandleInput();
+        game.Update();
 
 
         BeginDrawing();
+        
             ClearBackground(grey);
             game.Draw();
+            
         EndDrawing();
     }
 
