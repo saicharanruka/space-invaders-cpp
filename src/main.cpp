@@ -19,7 +19,7 @@ int main(void)
 
 
         BeginDrawing();
-        
+
             ClearBackground(grey);
             game.Draw();
             

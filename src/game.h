@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "spaceship.h"
+#include "obstacle.h"
 
 
 class Game {
@@ -15,7 +16,10 @@ class Game {
 
     private:
         void DeleteInactiveLasers();
+
+        std::vector<Obstacle> CreateObstacles();
          Spaceship spaceship;
+         std::vector<Obstacle> obstacles;
 };
 
 
