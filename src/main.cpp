@@ -2,10 +2,9 @@
 #include "game.h"
 #include <string>
 
-constexpr int g_offset = 50;
-constexpr int g_windowWidth = 750;
-constexpr int g_windowHeight = 700;
-constexpr Color grey = {29, 29, 27, 255};
+typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, ENDING } GameScreen;
+
+constexpr Color grey = BLACK;
 
 
 std::string FormatWithLeadingZeroes(int num, int width) {
@@ -27,6 +26,7 @@ int main(void)
     Texture2D spaceshipImage = LoadTexture("graphics/spaceship.png");
 
     Game game;
+    GameScreen currentScreen = LOGO;
  
 
     while (!WindowShouldClose())
@@ -39,13 +39,13 @@ int main(void)
         BeginDrawing();
 
             ClearBackground(grey);
-            DrawRectangleRoundedLines({10,10,780, 780}, 0.18f, 20, YELLOW);
-            DrawLineEx({25,730}, {775,730}, 3, YELLOW);
+            DrawRectangleRoundedLines({10,10,780, 780}, 0.18f, 20, GREEN);
+            DrawLineEx({25,730}, {775,730}, 3, GREEN);
 
             if (game.running)
-                DrawTextEx(font, "LEVEL 01", {600, 740}, 24, 2, YELLOW);
+                DrawTextEx(font, "LEVEL 01", {600, 740}, 24, 2, GREEN);
             else
-                DrawTextEx(font, "GAME OVER", {600, 740}, 24, 2, YELLOW);
+                DrawTextEx(font, "GAME OVER", {600, 740}, 24, 2, GREEN);
 
 
 
@@ -58,13 +58,13 @@ int main(void)
                 x += 50;
             }
             
-            DrawTextEx(font, "SCORE", {50,15}, 24, 2, YELLOW);
+            DrawTextEx(font, "SCORE", {50,15}, 24, 2, GREEN);
             std::string scoreText = FormatWithLeadingZeroes(game.score, 5);
-            DrawTextEx(font, scoreText.c_str(), {50, 40}, 24, 2, YELLOW);
+            DrawTextEx(font, scoreText.c_str(), {50, 40}, 24, 2, GREEN);
 
-            DrawTextEx(font, "HIGH-SCORE", {570,15}, 24, 2, YELLOW);
+            DrawTextEx(font, "HIGH-SCORE", {570,15}, 24, 2, GREEN);
             std::string highscoreText = FormatWithLeadingZeroes(game.highscore, 5);
-            DrawTextEx(font, highscoreText.c_str(), {655, 40}, 24, 2, YELLOW);
+            DrawTextEx(font, highscoreText.c_str(), {655, 40}, 24, 2, GREEN);
 
 
 

@@ -172,7 +172,7 @@ void Game::CheckForCollisions()
         }
 
         // with mystery ship
-        if (CheckCollisionRecs(mship.getRect(), laser.getRect())) {
+        if (CheckCollisionRecs(mship.getRect(), laser.getRect()) && mship.alive) {
             mship.alive = false;
             laser.active = false;
             score += 500;
@@ -336,7 +336,7 @@ void Game::AlienShootLaser() {
         int randomIndex = GetRandomValue(0, aliens.size() - 1);
         Alien alien = aliens[randomIndex];
         alienLasers.push_back(Laser({alien.position.x + alien.alienImages[alien.type - 1].width/2, 
-                alien.position.y + alien.alienImages[alien.type - 1].height},6, BLUE ));
+                alien.position.y + alien.alienImages[alien.type - 1].height},6, WHITE ));
         
         timeLastAlienFired = GetTime();
     }
